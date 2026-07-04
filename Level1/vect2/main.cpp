@@ -1,5 +1,5 @@
 //#include "vect2.hpp"
-#include "vect2_aio_5.hpp"
+#include "vect2_aio_6.hpp"
 #include <iostream>
 
 int main()
