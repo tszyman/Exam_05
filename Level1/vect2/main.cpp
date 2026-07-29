@@ -1,5 +1,5 @@
 //#include "vect2.hpp"
-#include "vect2_aio_6.hpp"
+#include "vect2_aio_8.hpp"
 #include <iostream>
 
 int main()
@@ -24,7 +24,7 @@ int main()
 	v1 -= v2; // -2,-4
 	std::cout << "v1 -= v2 (exp:{-2,-4}): " << v1 << std::endl;
 	
-	v2 = v3 + v3 *2; // 3,6
+	v2 = v3 + v3 * 2; // 3,6
 	std::cout << "v2 = v3 + v3 *2 (exp:{3,6}): " << v2 << std::endl;
 	
 	v2 = 3 * v2; // 9,18
