@@ -45,7 +45,7 @@ int main(int argc, char** argv){
 				next[i][j] = (board[i][j] && (n == 2 || n ==3)) || (!board[i][j] && n == 3);
 			}
 		}
-		//n2b
+		//b=n
 		for (int i = 0; i < h; i++){
 			for (int j = 0; j < w; j++){
 				board[i][j] = next[i][j];
