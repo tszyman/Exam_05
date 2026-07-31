@@ -1,0 +1,63 @@
+//includes (3)
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+//args, vars (10)
+int main(int argc, char** argv){
+	(void) argc;
+	int w = atoi(argv[1]);
+	int h = atoi(argv[2]);
+	int iter = atoi(argv[3]);
+	int board[h][w];
+	int next[h][w];
+	int x = 0;
+	int y = 0;
+	int pen = 0;
+	char c;
+	//board (2 for)
+	for (int i = 0; i < h; i++){
+		for (int j = 0; j < w; j++){
+			board[i][j] = 0;
+		}
+	}
+	//controls (while, 6 if)
+	while (read(0, &c, 1) == 1){
+		if (c == 'w' && y > 0) y--;
+		else if (c == 's' && y < h-1) y++;
+		else if (c == 'a' && x > 0) x--;
+		else if (c == 'd' && x < w-1) x++;
+		if (c == 'x') pen = !pen;
+		if (pen) board[y][x] = 1;
+	}
+	//simulation
+	for(int t = 0; t < iter; t++){ //iters
+		for (int i = 0; i < h; i++){
+			for(int j = 0; j < w;j++){
+				int n = 0;
+				for(int di = -1; di <=1; di++){
+					for(int dj = -1; dj<=1; dj++){
+						if((di || dj) && i+di>=0 && i+di < h && j+dj>=0 && j+dj < w){
+							n+=board[i+di][j+dj];
+						}
+					}
+				}
+				//simulate
+				next[i][j] = (board[i][j] && (n == 2 || n ==3)) || (!board[i][j] && n == 3);
+			}
+		}
+		//n2b
+		for (int i = 0; i < h; i++){
+			for (int j = 0; j < w; j++){
+				board[i][j] = next[i][j];
+			}
+		}
+	} 
+	//print
+	for(int i = 0; i < h; i++){
+		for(int j = 0; j < w; j++){
+			putchar(board[i][j] ? 'O' : ' ');
+		}
+		putchar('\n');
+	}
+	return(0);
+}
